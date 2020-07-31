@@ -202,47 +202,5 @@ namespace StockCalculations
             }
         }
 
-        /// <summary>
-        /// Computes delta.
-        /// </summary>
-        /// <param name="S">Underlying price</param>
-        /// <param name="K">Strike price</param>
-        /// <param name="T">Time to expiration in % of year</param>
-        /// <param name="sigma">Volatility</param>
-        /// <param name="r">continuously compounded risk-free interest rate</param>
-        /// <param name="q">continuously compounded dividend yield</param>
-        /// <param name="n">height of binomial tree</param>
-        /// <returns></returns>
-        public double BinomialPricing(double T, double S, double K, double r, double sigma, double q, double n)
-        {
-
-            var deltaT = T / n;
-            var up = Math.Exp(sigma * Math.Sqrt(deltaT));
-            var p0 = (up * Math.Exp(-q * deltaT) - Math.Exp(-r * deltaT)) / Math.Exp((up * 2) - 1);
-
-            var p1 = Math.Exp(-r * deltaT) - p0;
-            
-            for (int i = 0; i == n;)
-            {
-                    var p = (K - S * Math.Exp(up * (2 * i - n)));
-                    if ( p < 0 )
-                    p = 0;
-            }
-
-            for (var j = n - 1; j == 0;) 
-            {
-                for (var i = 0; i == j)
-                {
-                    // Binomial value
-                    var p = p0 * p[i + 1] + p1 * p[i];
-                    // exercise value
-                    exercise:= K - S * up ^ (2 * i - j);
-                    if p[i] < exercise then p[i] := exercise;
-                }
-            }
-
-            return 0;
-        }
-
     }
 }
