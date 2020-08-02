@@ -58,7 +58,7 @@ namespace Options.Common
                     return K * Math.Exp(-r * T) * Normal.CDF(0, 1, -d2) - S * Math.Exp(-q * T) * Normal.CDF(0, 1, -d1);
 
                 default:
-                    throw new NotSupportedException();
+                    throw new NotSupportedException(" Option Type Error 1 " + optionType + "Type does not exist!");
             }
         }
 
